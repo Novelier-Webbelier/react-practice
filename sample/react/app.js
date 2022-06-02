@@ -1,14 +1,25 @@
 const root = document.querySelector("#root");
-const span = React.createElement(
-  "span",
+
+const h3 = React.createElement(
+  "h3",
   {
-    id: "sexy-span",
-    class: "sexy-span",
-    style: {
-      color: "red",
-    },
+    id: "title",
+    onMouseEnter: () => console.log("Mouse enter")
   },
   "Hello World! I am a span"
 );
 
-ReactDOM.render(span, root);
+const btn = React.createElement(
+  "button",
+  {
+    onClick: () => console.log("I am clicked"),
+    style: {
+      color: "tomato",
+    }
+  },
+  "Click me"
+)
+
+const container = React.createElement("div", null, [h3, btn]);
+
+ReactDOM.render(container, root);
