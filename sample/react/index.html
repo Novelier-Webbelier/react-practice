@@ -12,14 +12,20 @@
     const root = document.querySelector("#root");
 
     const App = () => {
-      const [minutes, setMinutes] = React.useState(0);
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
 
       const onChange = (event) => {
-        setMinutes(event.target.value);
+        setAmount(event.target.value);
       }
 
-      const resetMinutes = () => {
-        setMinutes(0);
+      const resetAmount = () => {
+        setAmount(0);
+      }
+
+      const onFlip = () => {
+        resetAmount();
+        setFlipped((current) => !current);
       }
 
       return (
@@ -31,22 +37,25 @@
             id="minutes"
             placeholder="Minutes"
             type="number"
-            value={minutes}
+            value={flipped ? amount * 60 : amount}
             onChange={onChange}
+            disabled={flipped}
           />
 
-          <h4>You want to convert {minutes}</h4>
+          <h4>You want to convert {amount}</h4>
 
           <label htmlFor="hours">Hours</label>
           <input
             id="hours"
             placeholder="Hours"
             type="number"
-            value={Math.round(minutes/60)}
-            disabled
+            value={flipped ? amount : Math.round(amount / 60)}
+            onChange={onChange}
+            disabled={!flipped}
           />
 
-          <button onClick={resetMinutes}>Reset</button>
+          <button onClick={resetAmount}>Reset</button>
+          <button onClick={onFlip}>Flipped</button>
         </div>
       )
     };
