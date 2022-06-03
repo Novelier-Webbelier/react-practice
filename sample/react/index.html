@@ -12,10 +12,14 @@
     const root = document.querySelector("#root");
 
     const App = () => {
-      const [minutes, setMinutes] = React.useState();
+      const [minutes, setMinutes] = React.useState(0);
 
       const onChange = (event) => {
         setMinutes(event.target.value);
+      }
+
+      const resetMinutes = () => {
+        setMinutes(0);
       }
 
       return (
@@ -38,7 +42,11 @@
             id="hours"
             placeholder="Hours"
             type="number"
+            value={Math.round(minutes/60)}
+            disabled
           />
+
+          <button onClick={resetMinutes}>Reset</button>
         </div>
       )
     };
