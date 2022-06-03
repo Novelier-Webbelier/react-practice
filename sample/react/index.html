@@ -11,35 +11,26 @@
   <script type="text/babel">
     const root = document.querySelector("#root");
 
-    const Title = () => {
-      return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello I'm a title
-        </h3>
-      )
-    };
+    let counter = 0;
 
-    const Button = () => {
-      return (
-        <button style={{
-          color: "tomato"
-        }}
-          onClick={() => console.log("I am clicked")}
-        >
-          Click me
-        </button>
-      )
-    };
+    function counteUp() {
+      counter += 1;
+      render();
+    }
+
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
 
     const Container = () => {
       return (
         <div>
-          <Title />
-          <Button />
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={counteUp}>Click me</button>
         </div>
       )
     };
 
-    ReactDOM.render(<Container />, root);
-</script>
+    render();
+  </script>
 </html>
