@@ -13,7 +13,7 @@
 
     const App = () => {
       const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
+      const [inverted, setInverted] = React.useState(false);
 
       const onChange = (event) => {
         setAmount(event.target.value);
@@ -25,7 +25,7 @@
 
       const onFlip = () => {
         resetAmount();
-        setFlipped((current) => !current);
+        setInverted((current) => !current);
       }
 
       return (
@@ -37,9 +37,9 @@
             id="minutes"
             placeholder="Minutes"
             type="number"
-            value={flipped ? amount * 60 : amount}
+            value={inverted ? amount * 60 : amount}
             onChange={onChange}
-            disabled={flipped}
+            disabled={inverted}
           />
 
           <h4>You want to convert {amount}</h4>
@@ -49,13 +49,13 @@
             id="hours"
             placeholder="Hours"
             type="number"
-            value={flipped ? amount : Math.round(amount / 60)}
+            value={inverted ? amount : Math.round(amount / 60)}
             onChange={onChange}
-            disabled={!flipped}
+            disabled={!inverted}
           />
 
           <button onClick={resetAmount}>Reset</button>
-          <button onClick={onFlip}>Flipped</button>
+          <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
         </div>
       )
     };
